@@ -6,7 +6,7 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>
-  (
+ (
     AppModule, {
       transport: Transport.TCP,
       options: {
@@ -15,7 +15,7 @@ async function bootstrap() {
     }
   );
 
-  const looger = new Logger('ProductsMS-main');
+  const logger = new Logger('Orders-main');
 
   //app.setGlobalPrefix('api');
 
@@ -27,6 +27,6 @@ async function bootstrap() {
   );
 
   await app.listen();
-  looger.log("PRODUCTS-MICROSERVICE ACTIVATE");
+  logger.log("ORDERS-MICROSERVICE ACTIVATE");
 }
 bootstrap();
