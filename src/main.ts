@@ -15,7 +15,7 @@ async function bootstrap() {
     }
   );
 
-  const logger = new Logger('Orders-main');
+  const logger = new Logger('ORDERS MAIN');
 
   //app.setGlobalPrefix('api');
 
@@ -26,7 +26,15 @@ async function bootstrap() {
     })
   );
 
-  await app.listen();
-  logger.log("ORDERS-MICROSERVICE ACTIVATE");
+  //await app.listenAsync();
+  //await app.listen();
+  //logger.log("ORDERS-MICROSERVICE ACTIVATE");
+  app.listen()
+    .then(() => {
+      logger.log(`ORDERS-MICROSERVICE ACTIVATED; PORT: ${envs.port}`);
+    })
+    .catch((error) => {
+      logger.error('ORDERS-MICROSERVICES FAILED TO START', error);
+    });
 }
 bootstrap();
