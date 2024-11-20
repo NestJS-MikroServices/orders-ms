@@ -14,14 +14,11 @@ const envsSchema = joi.object(
     PORT: joi.number().required(),
     //PRODUCTS_MICROSERVICES_HOST: joi.string().required(),
     //PRODUCTS_MICROSERVICES_PORT: joi.number().required(),
-    NATS_SERVERS: joi.array().items(joi.string()).required()
+    NATS_SERVERS: joi
   })
   .unknown(true);
 
-const { error, value } = envsSchema.validate({
-  ...process.env,
-  NATS_SERVERS: process.env.NATS_SERVERS?.split(',')
-});
+const { error, value } = envsSchema.validate(process.env);
 
 if (error) {
   throw new Error(`CONFIG VALIDATION ERROR: ${error.message}`);
@@ -33,5 +30,4 @@ export const envs = {
   port: envVars.PORT,
   //productMSHost: envVars.PRODUCTS_MICROSERVICES_HOST,
   //productMSPort: envVars.PRODUCTS_MICROSERVICES_PORT,
-  natsServers: envVars.NATS_SERVERS
 }

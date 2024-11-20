@@ -3,7 +3,7 @@ import { OrdersService } from './orders.service';
 import { OrdersController } from './orders.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { envs, PRODUCT_SERVICE } from '../config';
-import { NatsModule } from '../transports/nats.module';
+import { NatsModule } from '';
 
 @Module({
   controllers: [OrdersController],
